@@ -1,11 +1,10 @@
-const bcrypt = require("bcrypt");
 const Usuario = require("../models/Usuario");
 
 const adminData = {
   nombres: "Admin",
   apellidos: "Principal",
   email: "admin@admin.com",
-  contrasena: "12345678", 
+  contrasena: "12345678",
   tipo_usuario: "administrador",
 };
 
@@ -17,8 +16,7 @@ async function crearAdminPorDefecto() {
       return;
     }
 
-    const hashedPassword = await bcrypt.hash(adminData.contrasena, 10);
-    await Usuario.create({ ...adminData, contrasena: hashedPassword });
+    await Usuario.create(adminData);
 
     console.log("✅ Usuario admin creado exitosamente.");
   } catch (error) {
